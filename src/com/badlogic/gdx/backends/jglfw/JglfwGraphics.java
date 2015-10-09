@@ -474,10 +474,15 @@ public class JglfwGraphics implements Graphics {
 	
 	@Override
 	public Cursor newCursor (Pixmap pixmap, int xHotspot, int yHotspot) {
-		return null;
+		return new JglfwCursor(this, pixmap, xHotspot, yHotspot);
 	}
 
 	@Override
 	public void setCursor (Cursor cursor) {
+		if (cursor == null) {
+			glfwSetCursor(window, 0);
+		} else {
+			cursor.setSystemCursor();
+		}
 	}
 }

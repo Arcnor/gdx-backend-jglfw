@@ -11,7 +11,7 @@ You can either compile yourself to use it directly, or use something like http:/
 * Based on LWJGL3
 * Sound supported
 * HiDPI displays supported
-* Custom cursors supported (TODO)
+* Custom cursors supported
 * Multiple displays supported (TODO)
 
 ## License

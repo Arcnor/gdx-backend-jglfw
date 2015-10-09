@@ -464,12 +464,12 @@ public class JglfwGraphics implements Graphics {
 
 	@Override
 	public boolean isGL30Available () {
-		return false;
+		return gl30 != null;
 	}
 
 	@Override
 	public GL30 getGL30 () {
-		return null;
+		return gl30;
 	}
 	
 	@Override

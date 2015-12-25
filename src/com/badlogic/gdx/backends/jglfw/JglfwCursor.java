@@ -64,9 +64,9 @@ public class JglfwCursor implements Cursor {
 		}
 
 		final GLFWImage img = GLFWImage.malloc();
-		img.setWidth(pixmap.getWidth());
-		img.setHeight(pixmap.getHeight());
-		img.setPixels(pixmap.getPixels());
+		img.width(pixmap.getWidth());
+		img.height(pixmap.getHeight());
+		img.pixels(pixmap.getPixels());
 
 		glfwCursor = glfwCreateCursor(img, xHotspot, yHotspot);
 		if (glfwCursor == 0) {

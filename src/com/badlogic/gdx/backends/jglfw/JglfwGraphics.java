@@ -94,7 +94,6 @@ public class JglfwGraphics implements Graphics {
 		}
 
 		// Create window.
-		org.lwjgl.system.macosx.EventLoop.checkFirstThread();
 		if (!createWindow(config.width, config.height, config.fullscreen)) {
 			throw new GdxRuntimeException("Unable to create window: " + config.width + "x" + config.height + ", fullscreen: "
 					+ config.fullscreen);
@@ -260,7 +259,7 @@ public class JglfwGraphics implements Graphics {
 		glfwGetMonitorPhysicalSize(getWindowMonitor(), intBuffer, null);
 		final GLFWVidMode vidMode = glfwGetVideoMode(getWindowMonitor());
 		int pW = intBuffer.get();
-		return vidMode.getWidth() / (pW * 0.03937f);
+		return vidMode.width() / (pW * 0.03937f);
 	}
 
 	public float getPpiY () {
@@ -269,7 +268,7 @@ public class JglfwGraphics implements Graphics {
 		glfwGetMonitorPhysicalSize(getWindowMonitor(), null, intBuffer);
 		final GLFWVidMode vidMode = glfwGetVideoMode(getWindowMonitor());
 		int pH = intBuffer.get();
-		return vidMode.getHeight() / (pH * 0.03937f);
+		return vidMode.height() / (pH * 0.03937f);
 	}
 
 	public float getPpcX () {
@@ -278,7 +277,7 @@ public class JglfwGraphics implements Graphics {
 		glfwGetMonitorPhysicalSize(getWindowMonitor(), intBuffer, null);
 		final GLFWVidMode vidMode = glfwGetVideoMode(getWindowMonitor());
 		int pW = intBuffer.get();
-		return vidMode.getWidth() / (pW / 10);
+		return vidMode.width() / (pW / 10);
 	}
 
 	public float getPpcY () {
@@ -287,7 +286,7 @@ public class JglfwGraphics implements Graphics {
 		glfwGetMonitorPhysicalSize(getWindowMonitor(), null, intBuffer);
 		final GLFWVidMode vidMode = glfwGetVideoMode(getWindowMonitor());
 		int pH = intBuffer.get();
-		return vidMode.getHeight() / (pH / 10);
+		return vidMode.height() / (pH / 10);
 	}
 
 	public float getDensity () {
@@ -299,8 +298,8 @@ public class JglfwGraphics implements Graphics {
 		float mmHeight = intBuffer2.get();
 		float inches = (float) Math.sqrt(mmWidth * mmWidth + mmHeight * mmHeight) * 0.03937f; // mm to inches
 		final GLFWVidMode vidMode = glfwGetVideoMode(getWindowMonitor());
-		float pixelWidth = vidMode.getWidth();
-		float pixelHeight = vidMode.getHeight();
+		float pixelWidth = vidMode.width();
+		float pixelHeight = vidMode.height();
 		float pixels = (float) Math.sqrt(pixelWidth * pixelWidth + pixelHeight * pixelHeight);
 		float diagonalPpi = pixels / inches;
 
@@ -325,10 +324,10 @@ public class JglfwGraphics implements Graphics {
 		for (int j = 0; j < vidModes.capacity(); j++) {
 			vidModes.position(j);
 			modes.add(new JglfwDisplayMode(
-					vidModes.getWidth(),
-					vidModes.getHeight(),
-					vidModes.getRefreshRate(),
-					vidModes.getRedBits() + vidModes.getGreenBits() + vidModes.getBlueBits()
+					vidModes.width(),
+					vidModes.height(),
+					vidModes.refreshRate(),
+					vidModes.redBits() + vidModes.greenBits() + vidModes.blueBits()
 			));
 		}
 		return modes.toArray(DisplayMode.class);
@@ -336,7 +335,7 @@ public class JglfwGraphics implements Graphics {
 
 	public DisplayMode getDesktopDisplayMode () {
 		GLFWVidMode mode = glfwGetVideoMode(getWindowMonitor());
-		return new JglfwDisplayMode(mode.getWidth(), mode.getHeight(), mode.getRefreshRate(), mode.getRedBits() + mode.getGreenBits() + mode.getBlueBits());
+		return new JglfwDisplayMode(mode.width(), mode.height(), mode.refreshRate(), mode.redBits() + mode.greenBits() + mode.blueBits());
 	}
 
 	public boolean setDisplayMode (DisplayMode displayMode) {

@@ -28,7 +28,6 @@ import com.badlogic.gdx.utils.IntMap;
 import com.badlogic.gdx.utils.LongMap;
 import com.badlogic.gdx.utils.ObjectMap;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.openal.AL;
 import org.lwjgl.openal.AL10;
 import org.lwjgl.openal.ALContext;
 
@@ -301,7 +300,7 @@ public class OpenALAudio implements Audio {
 		sourceToSoundId.clear();
 		soundIdToSource.clear();
 
-		AL.destroy(alContext);
+		alContext.destroy();
 		/*while (AL.isCreated()) {
 			try {
 				Thread.sleep(10);
